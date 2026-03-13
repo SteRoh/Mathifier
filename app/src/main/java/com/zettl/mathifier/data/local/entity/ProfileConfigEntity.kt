@@ -20,7 +20,6 @@ import androidx.room.PrimaryKey
 )
 data class ProfileConfigEntity(
     val profileId: Long,
-    val grade: Int,
     val operations: String,
     val minNumber: Int,
     val maxNumber: Int,

@@ -22,7 +22,7 @@ import com.zettl.mathifier.data.local.entity.StudentProfileEntity
         ProfileProgressEntity::class,
         EarnedBadgeEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class MathifierDatabase : RoomDatabase() {

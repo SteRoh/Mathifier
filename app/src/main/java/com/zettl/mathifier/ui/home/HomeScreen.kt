@@ -1,5 +1,6 @@
 package com.zettl.mathifier.ui.home
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,7 +17,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -38,10 +42,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.zettl.mathifier.R
+import androidx.compose.foundation.layout.sizeIn
 import com.zettl.mathifier.AppContainer
 import com.zettl.mathifier.data.local.entity.StudentProfileEntity
+import com.zettl.mathifier.ui.theme.kidFriendlyButton
 import kotlinx.coroutines.launch
 
 @Composable
@@ -66,22 +75,30 @@ fun HomeScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "Mathifier",
-                    style = MaterialTheme.typography.headlineLarge
-                )
-                IconButton(onClick = onNavigateToSettings) {
-                    Icon(Icons.Default.Settings, contentDescription = "Settings")
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.mathifier_logo),
+                        contentDescription = stringResource(R.string.app_name),
+                        modifier = Modifier.size(48.dp)
+                    )
+                    Text(
+                        text = stringResource(R.string.home_title),
+                        style = MaterialTheme.typography.headlineLarge
+                    )
                 }
             }
         },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { showAddDialog = true },
+                modifier = Modifier.sizeIn(minWidth = 72.dp, minHeight = 72.dp),
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary
             ) {
-                Icon(Icons.Default.Add, contentDescription = "Add profile")
+                Icon(Icons.Default.Add, contentDescription = stringResource(R.string.home_add_profile), modifier = Modifier.size(36.dp))
             }
         }
     ) { padding ->
@@ -92,7 +109,7 @@ fun HomeScreen(
                 .padding(horizontal = 16.dp)
         ) {
             Text(
-                text = "Choose a student",
+                text = stringResource(R.string.home_choose_student),
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.padding(vertical = 8.dp)
             )
@@ -104,7 +121,7 @@ fun HomeScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "No profiles yet. Tap + to add a student.",
+                        text = stringResource(R.string.home_no_profiles),
                         style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center
                     )
@@ -122,6 +139,12 @@ fun HomeScreen(
                                 scope.launch {
                                     container.preferencesDataSource.setCurrentProfileId(profile.id)
                                 }
+                            },
+                            onSettingsClick = {
+                                scope.launch {
+                                    container.preferencesDataSource.setCurrentProfileId(profile.id)
+                                    onNavigateToSettings()
+                                }
                             }
                         )
                     }
@@ -134,17 +157,17 @@ fun HomeScreen(
             ) {
                 Button(
                     onClick = onNavigateToPractice,
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.weight(1f).kidFriendlyButton(),
                     enabled = currentProfileId != null
                 ) {
-                    Text("Practice")
+                    Icon(Icons.Default.PlayArrow, contentDescription = stringResource(R.string.home_practice), modifier = Modifier.size(32.dp))
                 }
                 Button(
                     onClick = onNavigateToProgress,
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.weight(1f).kidFriendlyButton(),
                     enabled = currentProfileId != null
                 ) {
-                    Text("My progress")
+                    Icon(Icons.Default.EmojiEvents, contentDescription = stringResource(R.string.home_my_progress), modifier = Modifier.size(32.dp))
                 }
             }
             Spacer(modifier = Modifier.height(24.dp))
@@ -176,7 +199,8 @@ fun HomeScreen(
 private fun ProfileCard(
     profile: StudentProfileEntity,
     isSelected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onSettingsClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -207,8 +231,15 @@ private fun ProfileCard(
             Spacer(modifier = Modifier.size(16.dp))
             Text(
                 text = profile.displayName,
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.weight(1f)
             )
+            IconButton(
+                onClick = { onSettingsClick() },
+                modifier = Modifier.sizeIn(minWidth = 64.dp, minHeight = 64.dp)
+            ) {
+                Icon(Icons.Default.Settings, contentDescription = stringResource(R.string.home_settings), modifier = Modifier.size(32.dp))
+            }
         }
     }
 }
@@ -228,24 +259,29 @@ private fun AddProfileDialog(
         ) {
             Column(modifier = Modifier.padding(24.dp)) {
                 Text(
-                    text = "Add student",
+                    text = stringResource(R.string.home_add_student),
                     style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 OutlinedTextField(
                     value = name,
                     onValueChange = onNameChange,
-                    label = { Text("Name") },
+                    label = { Text(stringResource(R.string.home_name)) },
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(24.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Button(onClick = onDismiss) { Text("Cancel") }
+                    IconButton(onClick = onDismiss, modifier = Modifier.sizeIn(minWidth = 72.dp, minHeight = 72.dp)) {
+                        Icon(Icons.Default.Close, contentDescription = stringResource(R.string.home_cancel), modifier = Modifier.size(36.dp))
+                    }
                     Spacer(modifier = Modifier.size(8.dp))
-                    Button(onClick = onConfirm) { Text("Add") }
+                    IconButton(onClick = onConfirm, modifier = Modifier.sizeIn(minWidth = 72.dp, minHeight = 72.dp)) {
+                        Icon(Icons.Default.Add, contentDescription = stringResource(R.string.home_add), modifier = Modifier.size(36.dp))
+                    }
                 }
             }
         }

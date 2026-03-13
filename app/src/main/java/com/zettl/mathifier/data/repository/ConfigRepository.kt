@@ -21,7 +21,6 @@ class ConfigRepository(private val configDao: ConfigDao) {
     }
 
     private fun defaultConfig(): SessionConfig = SessionConfig(
-        grade = 1,
         operations = setOf(MathOperation.ADD),
         minNumber = 1,
         maxNumber = 10,
@@ -29,7 +28,6 @@ class ConfigRepository(private val configDao: ConfigDao) {
     )
 
     private fun ProfileConfigEntity.toDomain(): SessionConfig = SessionConfig(
-        grade = grade,
         operations = operations.split(",").mapNotNull { MathOperation.fromDbValue(it.trim()) }.toSet(),
         minNumber = minNumber,
         maxNumber = maxNumber,
@@ -38,7 +36,6 @@ class ConfigRepository(private val configDao: ConfigDao) {
 
     private fun SessionConfig.toEntity(profileId: Long): ProfileConfigEntity = ProfileConfigEntity(
         profileId = profileId,
-        grade = grade,
         operations = operations.joinToString(",") { it.dbValue },
         minNumber = minNumber,
         maxNumber = maxNumber,

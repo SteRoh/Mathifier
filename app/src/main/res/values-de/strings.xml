@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mathifier</string>
+
+    <!-- Home -->
+    <string name="home_title">Mathifier</string>
+    <string name="home_settings">Einstellungen</string>
+    <string name="home_add_profile">Profil hinzufügen</string>
+    <string name="home_choose_student">Wähle einen Schüler</string>
+    <string name="home_no_profiles">Noch keine Profile. Tippe + um einen Schüler hinzuzufügen.</string>
+    <string name="home_practice">Üben</string>
+    <string name="home_my_progress">Mein Fortschritt</string>
+    <string name="home_add_student">Schüler hinzufügen</string>
+    <string name="home_name">Name</string>
+    <string name="home_cancel">Abbrechen</string>
+    <string name="home_add">Hinzufügen</string>
+    <string name="home_delete_profile">Profil löschen</string>
+    <string name="home_delete_confirm">%1$s löschen? Das kann nicht rückgängig gemacht werden.</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_select_student_first">Wähle zuerst einen Schüler auf der Startseite, um Einstellungen zu ändern.</string>
+    <string name="settings_practice_title">Übungs-Einstellungen (für diesen Schüler)</string>
+    <string name="settings_operations">Rechenarten</string>
+    <string name="settings_addition">Addition</string>
+    <string name="settings_subtraction">Subtraktion</string>
+    <string name="settings_multiplication">Multiplikation</string>
+    <string name="settings_division">Division</string>
+    <string name="settings_min_number">Mindestzahl</string>
+    <string name="settings_max_number">Höchstzahl</string>
+    <string name="settings_questions_per_session">Fragen pro Runde</string>
+    <string name="settings_save">Einstellungen speichern</string>
+    <string name="settings_saved">Gespeichert!</string>
+
+    <!-- Language -->
+    <string name="settings_language">Sprache</string>
+    <string name="settings_language_system">Standard (Gerät)</string>
+    <string name="settings_language_german">Deutsch</string>
+    <string name="settings_language_english">English</string>
+
+    <!-- Practice -->
+    <string name="practice_title">Üben</string>
+    <string name="practice_back">Zurück</string>
+    <string name="practice_select_student_first">Wähle zuerst einen Schüler.</string>
+    <string name="practice_loading">Laden…</string>
+    <string name="practice_no_problems">Keine Aufgaben. Aktiviere mindestens eine Rechenart in den Einstellungen.</string>
+    <string name="practice_your_answer">Deine Antwort</string>
+    <string name="practice_check">Prüfen</string>
+    <string name="practice_correct">Richtig!</string>
+    <string name="practice_answer_was">Die Antwort war %1$d</string>
+    <string name="practice_next">Weiter</string>
+    <string name="practice_see_results">Ergebnis ansehen</string>
+    <string name="practice_correct_desc">Richtig</string>
+    <string name="practice_incorrect_desc">Falsch</string>
+    <string name="practice_progress_count">%1$d / %2$d</string>
+
+    <!-- Progress -->
+    <string name="progress_title">Mein Fortschritt</string>
+    <string name="progress_select_student_first">Wähle zuerst einen Schüler.</string>
+    <string name="progress_loading">Laden…</string>
+    <string name="progress_total_points">Punkte gesamt</string>
+    <string name="progress_current_streak">Aktuelle Serie</string>
+    <string name="progress_days">%1$d Tag(e)</string>
+    <string name="progress_badges">Abzeichen</string>
+    <string name="progress_no_badges">Noch keine Abzeichen. Weiter üben!</string>
+
+    <!-- Badges -->
+    <string name="badge_first_session_title">Erste Schritte</string>
+    <string name="badge_first_session_desc">Deine erste Übungsrunde absolviert</string>
+    <string name="badge_ten_correct_row_title">Heiße Serie</string>
+    <string name="badge_ten_correct_row_desc">10 richtige Antworten hintereinander</string>
+    <string name="badge_add_master_title">Additions-Meister</string>
+    <string name="badge_add_master_desc">50 Additionsaufgaben richtig gelöst</string>
+    <string name="badge_sub_master_title">Subtraktions-Meister</string>
+    <string name="badge_sub_master_desc">50 Subtraktionsaufgaben richtig gelöst</string>
+    <string name="badge_mul_master_title">Multiplikations-Meister</string>
+    <string name="badge_mul_master_desc">50 Multiplikationsaufgaben richtig gelöst</string>
+    <string name="badge_div_master_title">Divisions-Meister</string>
+    <string name="badge_div_master_desc">50 Divisionsaufgaben richtig gelöst</string>
+    <string name="badge_week_streak_title">Wochen-Kämpfer</string>
+    <string name="badge_week_streak_desc">7 Tage hintereinander geübt</string>
+</resources>

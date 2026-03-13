@@ -1,6 +1,8 @@
 package com.zettl.mathifier.ui.progress
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,9 +34,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import com.zettl.mathifier.AppContainer
+import com.zettl.mathifier.R
 import com.zettl.mathifier.data.repository.ProfileProgressView
 import com.zettl.mathifier.domain.Badge
+import com.zettl.mathifier.ui.progress.BadgeStrings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,10 +59,13 @@ fun ProgressScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("My progress") },
+                title = { Text(stringResource(R.string.progress_title)) },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    IconButton(
+                        onClick = onBack,
+                        modifier = Modifier.sizeIn(minWidth = 64.dp, minHeight = 64.dp)
+                    ) {
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.practice_back), modifier = Modifier.size(36.dp))
                     }
                 }
             )
@@ -70,7 +78,7 @@ fun ProgressScreen(
                     .padding(padding),
                 contentAlignment = Alignment.Center
             ) {
-                Text("Select a student first.")
+                Text(stringResource(R.string.progress_select_student_first))
             }
             return@Scaffold
         }
@@ -81,7 +89,7 @@ fun ProgressScreen(
                     .padding(padding),
                 contentAlignment = Alignment.Center
             ) {
-                Text("Loading...")
+                Text(stringResource(R.string.progress_loading))
             }
             return@Scaffold
         }
@@ -101,7 +109,7 @@ fun ProgressScreen(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Text("Total points", style = MaterialTheme.typography.labelLarge)
+                        Text(stringResource(R.string.progress_total_points), style = MaterialTheme.typography.labelLarge)
                         Text("${p.totalPoints}", style = MaterialTheme.typography.headlineMedium)
                     }
                     Spacer(modifier = Modifier.height(12.dp))
@@ -109,20 +117,20 @@ fun ProgressScreen(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Text("Current streak", style = MaterialTheme.typography.labelLarge)
-                        Text("${p.currentStreakDays} day(s)", style = MaterialTheme.typography.headlineMedium)
+                        Text(stringResource(R.string.progress_current_streak), style = MaterialTheme.typography.labelLarge)
+                        Text(stringResource(R.string.progress_days, p.currentStreakDays), style = MaterialTheme.typography.headlineMedium)
                     }
                 }
             }
             Spacer(modifier = Modifier.height(24.dp))
             Text(
-                "Badges",
+                stringResource(R.string.progress_badges),
                 style = MaterialTheme.typography.titleLarge
             )
             Spacer(modifier = Modifier.height(8.dp))
             if (p.earnedBadges.isEmpty()) {
                 Text(
-                    "No badges yet. Keep practicing!",
+                    stringResource(R.string.progress_no_badges),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -155,11 +163,11 @@ private fun BadgeCard(badge: Badge) {
             Spacer(modifier = Modifier.padding(8.dp))
             Column {
                 Text(
-                    text = badge.title,
+                    text = stringResource(BadgeStrings.titleRes(badge.id)),
                     style = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = badge.description,
+                    text = stringResource(BadgeStrings.descRes(badge.id)),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

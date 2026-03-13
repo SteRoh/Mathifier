@@ -1,12 +1,15 @@
 # Mathifier
 
-An Android app for practicing arithmetic. Configure sessions by grade, choose operations (+, −, ×, ÷), and track progress with profiles and badges.
+<p align="center">
+  <img src="assets/mathifier-logo-6plus7.png" alt="Mathifier logo" width="280" />
+</p>
+
+An Android app for practicing arithmetic. Configure sessions via settings (operations, number ranges), and track progress with profiles and badges.
 
 ## Features
 
 - **Practice** — Timed math sessions with configurable question count and number ranges
 - **Operations** — Addition, subtraction, multiplication, and division
-- **Grades 1–4** — Session presets and constraints by grade level
 - **Progress** — Session history, scoring, and earned badges
 - **Settings** — Preferences and profile management
 
