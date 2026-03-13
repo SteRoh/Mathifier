@@ -1,15 +1,24 @@
+# Build outputs
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
+.gradle/
 /build
+*.apk
+*.ap_
+*.aab
+*.jks
+*.keystore
 /captures
-.externalNativeBuild
-.cxx
+.externalNativeBuild/
+.cxx/
+
+# Local / IDE
 local.properties
+.DS_Store
+Thumbs.db
+
+# IntelliJ / Android Studio (not needed to rebuild)
+.idea/
+
+# Kotlin
+*.log
+*.hprof
